@@ -1,20 +1,38 @@
 import React from "react";
-import "./styles/input.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Landing from "./components/Landing";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
+import LandingPage from "./components/Landings/LandingPage";
+import Services from "./components/Landings/Services";
+import AboutUs from "./components/Landings/AboutUs";
+import Login from "./components/Landings/Login";
+import Register from "./components/Landings/Register";
+import FeedBackCards from "./components/Landings/FeedBackCards";
+import ContactUs from "./components/Landings/ContactUs";
+import FbPrompt from "./components/Landings/FbPrompt";
+import Footer from "./components/Landings/Footer";
 
-const App = () => {
+
+function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/login" element={<SignIn />} />
-      </Routes>
+      <div className="font-cursive antialiased">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <LandingPage />
+              <AboutUs />
+              <Services />
+              <FeedBackCards/>
+              <ContactUs/>
+              <FbPrompt/>
+              <Footer/>
+            </>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
     </Router>
   );
-};
+}
 
 export default App;

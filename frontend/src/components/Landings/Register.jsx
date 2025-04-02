@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,16 +26,32 @@ function Signup() {
       <div className="border-2 border-emerald-100 p-8 rounded-lg shadow-lg bg-white w-96">
         <h2 className="text-2xl font-bold text-center mb-6 text-emerald-800">Register</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
-              className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
-              required
-            />
+          {/* Name Fields Container */}
+          <div className="flex gap-4 mb-4">
+            {/* First Name Input */}
+            <div className="flex-1">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Firstname"
+                className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
+                required
+              />
+            </div>
+            {/* Last Name Input */}
+            <div className="flex-1">
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Lastname"
+                className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
+                required
+              />
+            </div>
           </div>
+
           <div className="mb-4">
             <input
               type="email"
