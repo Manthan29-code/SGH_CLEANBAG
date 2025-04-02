@@ -1,0 +1,20 @@
+{
+  "name": "sgh_cleanbag",
+  "version": "1.0.0",
+  "description": "This is a **Smart Waste Management System** designed for **Jamnagar Municipal Corporation (JMC)**. The platform helps residents report waste collection issues, allows garbage collectors to manage pickups, and provides administrators with insights into waste management operations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manthan29-code/SGH_CLEANBAG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manthan29-code/SGH_CLEANBAG/issues"
+  },
+  "homepage": "https://github.com/Manthan29-code/SGH_CLEANBAG#readme"
+}
