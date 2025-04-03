@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Footer() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigation = (path) => {
     navigate(path);
-    window.scrollTo(0, 0); // Scroll to top when navigating
+    // Only scroll to top if we're not already at the target route
+    if (location.pathname !== path) {
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
@@ -36,7 +40,7 @@ function Footer() {
             onClick={() => handleNavigation('/contact')}
             className="text-emerald-100 hover:text-white transition-colors"
           >
-            Contacts
+            Contact
           </button>
         </nav>
 
@@ -45,7 +49,7 @@ function Footer() {
           © All Rights Reserved. Cleanbage 2024
         </div>
 
-        {/* Scroll to Top Button */}
+        {/* Scroll to Top Button - Only show if not at top */}
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="fixed bottom-4 right-4 bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-lg shadow-lg transition-colors"

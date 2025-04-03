@@ -8,10 +8,27 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user');
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const minLength = 12;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+    if (password.length < minLength) {
+      return 'Password must be at least 12 characters long';
+    }
+    if (!hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChar) {
+      return 'Password must contain uppercase, lowercase, numbers, and special characters';
+    }
+    return '';
   };
 
   const handleSubmit = (event) => {
@@ -22,7 +39,14 @@ function LoginPage() {
       return;
     }
 
+    const passwordValidationError = validatePassword(password);
+    if (passwordValidationError) {
+      setPasswordError(passwordValidationError);
+      return;
+    }
+
     setEmailError('');
+    setPasswordError('');
 
     console.log('Name:', name);
     console.log('Email:', email);
@@ -73,6 +97,7 @@ function LoginPage() {
               className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
               required
             />
+            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
           </div>
           <div className="mb-6">
             <select
