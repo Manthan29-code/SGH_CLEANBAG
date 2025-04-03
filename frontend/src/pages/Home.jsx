@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useTheme } from "@/context/ThemeContext";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
@@ -9,8 +8,7 @@ import { FaRecycle, FaLeaf, FaTruck, FaMedal } from "react-icons/fa";
 import { TbLoader3 } from "react-icons/tb";
 import { MdSchedule } from "react-icons/md";
 
-const Home = () => {
-  const { darkMode } = useTheme();
+const Home = ({ darkMode }) => {
 
   const features = [
     {
@@ -38,7 +36,7 @@ const Home = () => {
   return (
     <div className={`${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-[#F0FDF4] dark:bg-[#081C15] transition-colors duration-300">
-        <Navbar />
+        {/* <Navbar /> */}
         
         {/* Hero Section */}
         <main className="pt-16">
@@ -127,7 +125,7 @@ const Home = () => {
           </section>
         </main>
 
-        <Footer darkMode={darkMode} />
+        {/* <Footer darkMode={darkMode} /> */}
       </div>
     </div>
   );
