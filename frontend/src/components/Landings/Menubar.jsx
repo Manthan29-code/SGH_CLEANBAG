@@ -5,9 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 function Menubar({ onClose }) {
   const navigate = useNavigate();
 
-  const handleHomeClick = (e) => {
-    e.preventDefault();
-    navigate('/');
+  const handleNavigation = (path) => {
+    navigate(path);
     onClose();
   };
 
@@ -72,11 +71,11 @@ function Menubar({ onClose }) {
         <motion.nav variants={itemVariants}>
           <ul className="space-y-1 md:space-y-2">
             {[
-              { text: 'Home', onClick: handleHomeClick },
-              { text: 'Schedule', href: '#' },
-              { text: 'Requests', href: '#' },
-              { text: 'Wallet', href: '#' },
-              { text: 'Leaderboard', href: '#' },
+              { text: 'Home', onClick: () => handleNavigation('/') },
+              { text: 'Schedule', onClick: () => handleNavigation('/scheduling') },
+              { text: 'Requests', onClick: () => handleNavigation('/requests') },
+              { text: 'Wallet', onClick: () => handleNavigation('/wallet') },
+              { text: 'Leaderboard', onClick: () => handleNavigation('/leaderboard') },
               { text: 'Available Reward', href: '#' },
               { text: 'Feedback for Worker', href: '#' },
             ].map((item, index) => (
@@ -85,21 +84,12 @@ function Menubar({ onClose }) {
                 whileHover={{ x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {item.onClick ? (
-                  <button 
-                    onClick={item.onClick}
-                    className="w-full text-left block hover:bg-emerald-100 p-2 rounded transition-colors text-sm md:text-base"
-                  >
-                    {item.text}
-                  </button>
-                ) : (
-                  <a 
-                    href={item.href} 
-                    className="block hover:bg-emerald-100 p-2 rounded transition-colors text-sm md:text-base"
-                  >
-                    {item.text}
-                  </a>
-                )}
+                <button 
+                  onClick={item.onClick || (() => {})}
+                  className="w-full text-left block hover:bg-emerald-100 p-2 rounded transition-colors text-sm md:text-base"
+                >
+                  {item.text}
+                </button>
               </motion.li>
             ))}
           </ul>
