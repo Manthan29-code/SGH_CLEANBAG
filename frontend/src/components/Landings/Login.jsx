@@ -102,7 +102,7 @@ function LoginPage() {
 
           <button
             type="submit"
-            className="bg-[#66BB6A] hover:bg-[#2E7D32] text-white font-bold py-2 rounded w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded w-full disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
             {isLoading ? 'Logging in...' : 'Login'}
@@ -110,11 +110,11 @@ function LoginPage() {
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-green-900">
+          <p className="text-emerald-900">
             Don't have an account?
             <button
               onClick={() => navigate('/register')}
-              className="ml-1 text-green-700 hover:underline"
+              className="ml-1 text-emerald-700 hover:underline"
               disabled={isLoading}
             >
               Register
