@@ -7,7 +7,7 @@ function Header({ isMenuOpen, toggleMenu }) {
     <>
       {/* Hamburger Menu Button - Hidden when menu is open */}
       {!isMenuOpen && (
-        <motion.button 
+        <motion.button
           onClick={toggleMenu}
           className="fixed top-4 left-4 p-2 hover:bg-emerald-700 rounded-lg z-20"
           initial={{ opacity: 0 }}
@@ -16,19 +16,19 @@ function Header({ isMenuOpen, toggleMenu }) {
           whileTap={{ scale: 0.9 }}
         >
           <div className="space-y-1.5">
-            <motion.span 
+            <motion.span
               className="block w-6 h-0.5 bg-white"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.2 }}
             />
-            <motion.span 
+            <motion.span
               className="block w-6 h-0.5 bg-white"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3 }}
             />
-            <motion.span 
+            <motion.span
               className="block w-6 h-0.5 bg-white"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -42,7 +42,7 @@ function Header({ isMenuOpen, toggleMenu }) {
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            <motion.div 
+            <motion.div
               className="fixed inset-0 bg-transparent z-10"
               onClick={() => toggleMenu()}
               initial={{ opacity: 0 }}
@@ -55,7 +55,7 @@ function Header({ isMenuOpen, toggleMenu }) {
       </AnimatePresence>
 
       {/* Welcome Message - Adjusted padding for mobile */}
-      <motion.div 
+      <motion.div
         className="bg-emerald-800 text-white text-center pt-16 px-4 pb-6 md:pt-8"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

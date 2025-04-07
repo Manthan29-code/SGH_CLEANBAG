@@ -38,7 +38,7 @@ function LoginPage() {
 
     try {
       const result = await login(formData);
-      
+
       if (result?.success) {
         navigate('/');
       } else {

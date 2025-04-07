@@ -78,7 +78,7 @@ function Signup() {
 
     try {
       const result = await register(formData);
-      
+
       if (result?.success) {
         navigate('/login');
       } else {
