@@ -1,132 +1,129 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
+import { MdOutlineEmail } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const { login } = useAuth();
 
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [generalError, setGeneralError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const validatePassword = (password) => {
-    const minLength = 12;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*]/.test(password);
-
-    if (password.length < minLength) {
-      return 'Password must be at least 12 characters long';
-    }
-    if (!hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChar) {
-      return 'Password must contain uppercase, lowercase, numbers, and special characters';
-    }
-    return '';
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setGeneralError('');
 
-    if (!validateEmail(email)) {
-      setEmailError('Invalid email format');
-      return;
-    }
+    setIsLoading(true);
 
-    const passwordValidationError = validatePassword(password);
-    if (passwordValidationError) {
-      setPasswordError(passwordValidationError);
-      return;
-    }
+    try {
+      const result = await login(formData);
 
-    setEmailError('');
-    setPasswordError('');
-
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Role:', role);
-
-    alert('Login data submitted. Check console for details.');
-
-    if (role === 'user') {
-      navigate('/user-dashboard');
-    } else if (role === 'worker') {
-      navigate('/worker-dashboard');
+      if (result?.success) {
+        navigate('/');
+      } else {
+        setGeneralError(result?.error || 'Invalid email or password');
+      }
+    } catch (error) {
+      setGeneralError('An unexpected error occurred. Please try again.');
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-emerald-50">
-      <div className="border-2 border-emerald-100 p-8 rounded-lg shadow-lg bg-white w-96">
-        <h2 className="text-2xl font-bold text-center mb-6 text-emerald-800">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
-              className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
-              required
-            />
-          </div>
-          <div className="mb-4">
+    <div className="w-full min-h-screen flex justify-center items-center bg-[#F0FDF4] px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg border-[1px] border-zinc-300">
+        <h2 className="mb-6 text-center text-3xl font-bold text-green-900 uppercase">
+          Login
+        </h2>
+
+        {generalError && (
+          <p className="mb-4 text-center text-red-500">{generalError}</p>
+        )}
+
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <div className="flex border-[1px] items-center py-2 mb-5">
+            <MdOutlineEmail className="ml-3 md:ml-5 text-gray-500" />
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
+              name="email"
+              placeholder="Enter Email"
+              className="outline-none bg-transparent px-3 md:px-5 border-zinc-300 rounded-sm w-full"
+              value={formData.email}
+              onChange={handleChange}
               required
+              disabled={isLoading}
             />
-            {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
           </div>
-          <div className="mb-4">
+
+          <div className="flex border-[1px] items-center py-2 mb-5 relative">
+            <RiLockPasswordLine className="ml-3 md:ml-5 text-gray-500" />
             <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter Password"
+              className="outline-none bg-transparent px-3 md:px-5 border-zinc-300 rounded-sm w-full pr-10"
+              value={formData.password}
+              onChange={handleChange}
               required
+              disabled={isLoading}
             />
-            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
-          </div>
-          <div className="mb-6">
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full px-3 py-2 border border-emerald-200 rounded-md focus:outline-none focus:ring focus:border-emerald-300 text-emerald-800"
-              required
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 text-gray-500"
+              disabled={isLoading}
             >
-              <option value="user">User</option>
-              <option value="worker">Worker</option>
-            </select>
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </button>
           </div>
+
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded mb-4"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        <div className="mt-4 text-center">
-          <p className="text-emerald-800">
+
+        <div className="mt-6 text-center">
+          <p className="text-emerald-900">
             Don't have an account?
-            <button onClick={() => navigate('/register')} className="text-emerald-600 hover:underline ml-1">
+            <button
+              onClick={() => navigate('/register')}
+              className="ml-1 text-emerald-700 hover:underline"
+              disabled={isLoading}
+            >
               Register
             </button>
           </p>
           <button
             onClick={() => navigate('/')}
-            className="mt-4 w-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold py-2 rounded"
+            className="mt-4 w-full bg-gray-100 py-2 font-bold text-green-900 hover:bg-gray-200 rounded disabled:opacity-50"
+            disabled={isLoading}
           >
             Back to Home
           </button>

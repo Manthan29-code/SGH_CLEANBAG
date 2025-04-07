@@ -1,5 +1,14 @@
 # SGH CleanBag Backend API Documentation
 
+## .env format for backend 
+``` 
+MONGO_URI=
+PORT=
+CLIENT_URL=
+JWT_SECRET=
+
+```
+
 This document provides detailed information about all available endpoints in the SGH CleanBag backend API.
 
 ## Response Format

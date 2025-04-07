@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import Header from "./components/Landings/Header";
 import LandingPage from "./components/Landings/LandingPage";
 import Services from "./components/Landings/Services";
@@ -30,7 +30,7 @@ function App() {
   };
 
   return (
-    <Router>
+    
       <div className="font-cursive antialiased">
         <BackgroundLayout>
           <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -145,7 +145,6 @@ function App() {
           </Routes>
         </BackgroundLayout>
       </div>
-    </Router>
   );
 }
 
