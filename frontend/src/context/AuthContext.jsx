@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import api from "@/utils/api";
 
-const AuthContext = createContext({
+export const AuthContext = createContext({
   user: null,
   isAuthenticated: false,
   isLoading: true,
@@ -170,15 +170,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-
-  return context;
-};
-
-export default AuthProvider;
