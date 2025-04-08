@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 import { FaRegUser, FaMapMarkerAlt, FaTruck } from 'react-icons/fa';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { MdOutlineEmail } from 'react-icons/md';
