@@ -1,5 +1,5 @@
 import React from 'react';
-import cleanbageLogo from '../../assets/cleanbage-logo.svg';
+import cleanbageLogo from '@/assets/cleanbage-logo.svg';
 
 function BackgroundLayout({ children }) {
   return (
