@@ -1,5 +1,5 @@
 import React from "react";
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Services from "@/components/Landings/Services";
 import AboutUs from "@/components/Landings/AboutUs";
@@ -22,39 +22,39 @@ import LBHome from '@/components/LeaderBoard/LBHome';
 function App() {
 
   const LayoutRoutes = [
-    {path : "/", element : <Home/>},
-    {path : "/about", element : <AboutUs/>},
-    {path : "/services", element : <Services/>},
-    {path : "/testimonials", element : <FeedBackCards/>},
-    {path : "/contact", element : <ContactUs/>},
-    {path : "/scheduling", element : <SchedulingHome/>},
-    {path : "/holiday-calendar", element : <HolidayCalendar/>},
-    {path : "/requests", element : <CleanBageConnect/>},
-    {path : "/waste-collection", element : <WcReq/>},
-    {path : "/extra-waste-bin", element : <ExtraWcReq/>},
-    {path : "/wallet", element : <CleanbageWallet/>},
-    {path : "/wallet/profile", element : <ProfileSummary/>},
-    {path : "/wallet/transaction-history", element : <TransactionHistory/>},
-    {path : "/wallet/rewards-history", element : <RewardHistory/>},
-    {path : "/leaderboard", element : <LBHome/>},
+    { path: "/", element: <Home /> },
+    { path: "/about", element: <AboutUs /> },
+    { path: "/services", element: <Services /> },
+    { path: "/testimonials", element: <FeedBackCards /> },
+    { path: "/contact", element: <ContactUs /> },
+    { path: "/scheduling", element: <SchedulingHome /> },
+    { path: "/holiday-calendar", element: <HolidayCalendar /> },
+    { path: "/requests", element: <CleanBageConnect /> },
+    { path: "/waste-collection", element: <WcReq /> },
+    { path: "/extra-waste-bin", element: <ExtraWcReq /> },
+    { path: "/wallet", element: <CleanbageWallet /> },
+    { path: "/wallet/profile", element: <ProfileSummary /> },
+    { path: "/wallet/transaction-history", element: <TransactionHistory /> },
+    { path: "/wallet/rewards-history", element: <RewardHistory /> },
+    { path: "/leaderboard", element: <LBHome /> },
   ]
 
   return (
-      <Routes>
-         {LayoutRoutes.map((route, index) => (
-          <Route key={index} element={<Layout />}>
+    <Routes>
+      {LayoutRoutes.map((route, index) => (
+        <Route key={index} element={<Layout />}>
 
           <Route
             key={index}
             path={route.path}
             element={route.element}
-            />
-            </Route>
-        ))}
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/Register" element={<Register/>}/>
+          />
+        </Route>
+      ))}
+      <Route path="/login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
 
-      </Routes>
+    </Routes>
   );
 }
 
