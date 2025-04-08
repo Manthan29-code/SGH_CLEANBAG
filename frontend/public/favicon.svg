@@ -1,0 +1,67 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Primary Circle Background -->
+  <circle cx="256" cy="256" r="240" fill="#2D6A4F"/>
+  
+  <!-- Smart Bin Design -->
+  <path
+    d="
+      M 176 160
+      L 156 400
+      L 356 400
+      L 336 160
+      Q 336 140 316 140
+      L 196 140
+      Q 176 140 176 160
+      Z
+    "
+    fill="#95D5B2"
+    stroke="#FFFFFF"
+    stroke-width="8"
+  />
+
+  <!-- Bin Lid -->
+  <path
+    d="
+      M 156 160
+      L 196 140
+      L 316 140
+      L 356 160
+    "
+    fill="#95D5B2"
+    stroke="#FFFFFF"
+    stroke-width="8"
+    stroke-linejoin="round"
+  />
+
+  <!-- Simple Leaf Emblem -->
+  <path
+    d="
+      M 236 220
+      C 236 220, 196 240, 216 280
+      C 236 320, 276 300, 276 300
+      C 276 300, 306 280, 296 240
+      C 286 200, 236 220, 236 220
+      Z
+    "
+    fill="#FFFFFF"
+  />
+
+  <!-- Recycling Symbol -->
+  <g transform="translate(256 320) scale(0.5)">
+    <path 
+      d="M-40,-40 L0,-40 L-20,0 Z" 
+      fill="#FFFFFF" 
+      transform="rotate(0)"
+    />
+    <path 
+      d="M-40,-40 L0,-40 L-20,0 Z" 
+      fill="#FFFFFF" 
+      transform="rotate(120)"
+    />
+    <path 
+      d="M-40,-40 L0,-40 L-20,0 Z" 
+      fill="#FFFFFF" 
+      transform="rotate(240)"
+    />
+  </g>
+</svg>
