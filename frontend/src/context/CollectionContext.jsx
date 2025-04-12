@@ -30,6 +30,7 @@ export const CollectionProvider = ({ children }) => {
       setLoading(true);
       clearError();
       const response = await api.post('/api/collections', binData);
+      console.log(response)
       setCollections(prev => [...prev, response.data.data]);
       return response.data;
     } catch (error) {
