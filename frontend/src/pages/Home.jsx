@@ -5,7 +5,6 @@ import Services from '@/components/Landings/Services'
 import FeedBackCards from '@/components/Landings/FeedBackCards'
 import ContactUs from '@/components/Landings/ContactUs'
 import FbPrompt from '@/components/Landings/FbPrompt'
-import Footer from '@/components/Landings/Footer'
 
 
 const Home = () => {
@@ -17,7 +16,6 @@ const Home = () => {
             <FeedBackCards />
             <ContactUs />
             <FbPrompt />
-            <Footer />
         </div>
     )
 }
